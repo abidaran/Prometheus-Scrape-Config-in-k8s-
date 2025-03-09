@@ -12,4 +12,19 @@ And now, apply the generated manifest:
 ```
 kubectl apply -f additional-scrape-configs.yaml -n monitoring
 ```
+Then find prometheus components in the name space
+```
+kubectl get Prometheus -n monitoring
+```
+And edit CRD 
+```
+kubectl edit Prometheus kube-prometheus-stack-prometheus -n monitoring
+```
+Finally refrence this additional configuration under spec section:
+```
+additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: prometheus-additional.yaml
+```
+
 
